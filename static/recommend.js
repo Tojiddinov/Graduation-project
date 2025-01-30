@@ -12,7 +12,7 @@ $(function() {
   source.addEventListener('input', inputHandler);
 
   $('.movie-button').on('click',function(){
-    var my_api_key = 'YOUR_API_KEY';
+    var my_api_key = '74e9324ddf26ffda8ad02ea8bf8e6853';
     var title = $('.movie').val();
     if (title=="") {
       $('.results').css('display','none');
@@ -27,7 +27,7 @@ $(function() {
 // will be invoked when clicking on the recommended movies
 function recommendcard(e){
   var my_api_key = 'YOUR_API_KEY';
-  var title = e.getAttribute('title'); 
+  var title = e.getAttribute('title');
   load_details(my_api_key,title);
 }
 
@@ -86,7 +86,7 @@ function movie_recs(movie_title,movie_id,my_api_key){
       alert("error recs");
       $("#loader").delay(500).fadeOut();
     },
-  }); 
+  });
 }
 
 // get all the details of the movie using the movie id.
@@ -127,11 +127,11 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
     runtime = Math.floor(runtime/60)+" hour(s) "+(runtime%60)+" min(s)"
   }
   arr_poster = get_movie_posters(arr,my_api_key);
-  
+
   movie_cast = get_movie_cast(movie_id,my_api_key);
-  
+
   ind_cast = get_individual_cast(movie_cast,my_api_key);
-  
+
   details = {
     'title':movie_title,
       'cast_ids':JSON.stringify(movie_cast.cast_ids),

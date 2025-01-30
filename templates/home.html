@@ -1,77 +1,205 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Movie Recommendation System</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodflix</title>
+    <link rel="icon" href="/static/Untitled%20design%20(2).png" type="image/png">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-  <!-- Auto Complete -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
-  <script type="text/javascript">
-    var films = {{suggestions|tojson}};
-  </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-</head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xQq1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<body id="content" style="font-family: 'Noto Sans JP', sans-serif;">
+    <!-- Auto Complete -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+      const suggestions = {{ suggestions | tojson }};
+    </script>
+    </head>
 
-	<div class="ml-container" style="display: block;">
-		<a href="https://github.com/kishan0725/AJAX-Movie-Recommendation-System-with-Sentiment-Analysis" target="_blank" class="github-corner" title="View source on GitHub">
-		      <svg data-toggle="tooltip"
-		      data-placement="left" width="80" height="80" viewBox="0 0 250 250"
-			style="fill:#e50914; color:#fff; position: fixed;z-index:100; top: 0; border: 0; right: 0;" aria-hidden="true">
-			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-			<path
-			  d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-			  fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-			<path
-			  d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-			  fill="currentColor" class="octo-body"></path>
-		      </svg>
-		    </a>
-    <center><h1 style=""> Movie Recommendation System</h1></center>
-    <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: white;">
-        <input type="text" name="movie" class="movie form-control" id="autoComplete" autocomplete="off" placeholder="Enter the Movie Name" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" required="required" />
-        <br>
+
+
+
+  <body id="content">
+    <header>
+      <div class="logo">
+        <img src="/static/Untitled%20design%20(2).png" alt="Moodflix Logo">
+        <h1>MOODFLIX</h1>
+      </div>
+      <div class="auth-buttons">
+        <a href="#">Unlock Features</a>
+        <a href="#">Login</a>
+      </div>
+    </header>
+
+    <!-- Mood Container -->
+    <div class="mood-container">
+      <h1>I want to feel...</h1>
+      <form action="/recommend" method="POST">
+      <div class="search-box">
+        <input type="text"  name="movie" class="movie form-control" id="autoComplete" autocomplete="off" placeholder="Enter the Movie Name"  required="required" />
+      </div>
+      <button type="submit" class="mood-button">Search</button>
+      </form>
+      <div class="moods">
+        <button class="mood-button">Date Night Vibe ❤️</button>
+        <button class="mood-button">Joy 🌟</button>
+        <button class="mood-button">Wonder ✨</button>
+        <button class="mood-button">Melancholy 🌧️</button>
+        <button class="mood-button">Spontaneous 🎉</button>
+        <button class="mood-button">Adventurous 🏞️</button>
+        <button class="mood-button">Excited 🔥</button>
+        <button class="mood-button">Romantic 💕</button>
+        <button class="mood-button">Inspired 💡</button>
+        <button class="mood-button">Relaxed 🛀</button>
+        <button class="mood-button">Quirky 🤪</button>
+        <button class="mood-button">Triumphant 🏆</button>
+        <button class="mood-button">Energetic ⚡</button>
+        <button class="mood-button">Serene 🌿</button>
+        <button class="mood-button">Mystical 🔮</button>
+        <button class="mood-button">Playful 🎭</button>
+        <button class="mood-button">Grateful 🙏</button>
+        <button class="mood-button">Motivated 🚀</button>
+        <button class="mood-button">Brave 🦁</button>
+        <button class="mood-button">Chilled ❄️</button>
+        <button class="mood-button">Empowered 💪</button>
+        <button class="mood-button">Curious 🕵️</button>
+        <button class="mood-button">Cheerful 😄</button>
+        <button class="mood-button">Silly 🤡</button>
+        <button class="mood-button">Confident 😎</button>
+        <button class="mood-button">Focused 🎯</button>
+        <button class="mood-button">Free 🕊️</button>
+        <button class="mood-button">Peaceful ☮️</button>
+        <button class="mood-button">Exciting 🎢</button>
+      </div>
     </div>
 
-    <div class="form-group" style="text-align: center;">
-      <button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" disabled="true" >Enter</button><br><br>
+    <!-- Latest Videos -->
+    <div class="trending-section">
+      <h2>Trending Now</h2>
+      <div class="trending-slider">
+        {% for movie in trending_movies %}
+        <div class="movie-card">
+          <a href="{{ movie['url'] }}">
+            <img src="{{ movie['poster'] }}" alt="{{ movie['title'] }}">
+            <div class="overlay">{{ movie['title'] }}</div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-	</div>
+     <!-- Trending Section -->
 
-  <div id="loader" class="text-center">
-  </div>
-  
-  <div class="fail">
-    <center><h3>Sorry! The movie you requested is not in our database. 
-    Please check the spelling or try with other movies!</h3></center>
-  </div>
+     <!-- Features Section -->
+       <!-- Features Section -->
+    <div class="features-section">
+      <h2>More Reasons to Join</h2>
+      <div class="features-container">
+        <div class="feature-card">
+          <div class="icon"></i></div>
+          <h3>Watch on Your TV</h3>
+          <p>Enjoy movies on Smart TVs, PlayStation, Chromecast, and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fa-solid fa-circle-down"></i></div>
+          <h3>Download to Watch Offline</h3>
+          <p>Save your favorites and enjoy offline anytime.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>Watch Everywhere</h3>
+          <p>Stream movies on your phone, tablet, or laptop anytime.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fa-solid fa-face-smile"></i></div>
+          <h3>Choose by Mood</h3>
+          <p>Find the perfect movie for how you feel, manually or visually.</p>
+        </div>
 
-	<div class="results">
-    <center>
-      <h2 id="name" class="text-uppercase"></h2>
-    </center>
-	</div>
-	
-	<div class="footer" style="">Made with<span style="font-size:150%;color:red;"> &hearts; </span>by Kishan</div>
-	
-	<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
+        <div class="feature-card">
+          <div class="icon"><i class="fa-solid fa-face-smile"></i></div>
+          <h3>Define your mood </h3>
+          <p>Find the perfect movie for how you feel  visually.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Latest Videos Section -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
 
-</body>
+
+      <div class="about-moodflix">
+        <div class="logo-container">
+          <img src="/static/Untitled%20design.jpg" alt="Moodflix Logo">
+        </div>
+        <div class="content-container">
+          <h2>About Moodflix</h2>
+          <p>
+            Moodflix is a movie recommendation platform designed to match your mood with the perfect movie.
+            Whether you're feeling joyful, adventurous, or simply in need of a cozy night in, Moodflix curates
+            personalized movie suggestions to enhance your experience. Discover, enjoy, and explore movies that
+            resonate with your feelings.
+          </p>
+        </div>
+      </div>
+
+
+
+    <!-- Our Team -->
+      <!-- Features Section -->
+
+
+     <!--
+    <div class="team-section">
+      <h2>Our Team</h2>
+      <div class="team-container">
+        <div class="team-member">
+          <img src="/static/UMAR.JPG" alt="Team Member 1" />
+          <h3>Jurabek Tojiddinov </h3>
+          <p>Project Lead / Full-stack web Developer </p>
+        </div>
+        <div class="team-member">
+          <img src="/static/suxa.jpg" alt="Team Member 2" />
+          <h3>Sukhrob Sotibolidyev </h3>
+          <p>Backend Dev</p>
+        </div>
+
+      </div>
+    </div>
+     -->
+
+
+    <div class="feedback-section">
+      <h2>We'd Love Your Feedback!</h2>
+      <div class="feedback-form">
+      <form action="/feedback" method="POST" class="feedback-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <textarea name="feedback" rows="4" placeholder="Share your thoughts here..." required></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+      </div>
+    </div>
+
+
+    <!-- Feedback Section -->
+
+
+    <!-- Footer -->
+    <div class="footer">
+      Made with<span> &hearts; </span>by Moodflix
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+  </body>
 </html>
